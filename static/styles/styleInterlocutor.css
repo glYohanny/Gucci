@@ -1,0 +1,238 @@
+:root {
+    /* Colores */
+    --color-primary: #007bff;
+    --color-secondary: #6c63ff;
+    --color-background: #f9f9f9;
+    --color-border: #ddd;
+    --color-text: #000000;
+    --color-text-light: #000000;
+    
+    /* Espaciado */
+    --spacing-xs: 0.2rem;    /* 4px */
+    --spacing-sm: 0.4rem;    /* 8px */
+    --spacing-md: 0.8rem;    /* 16px */
+    --spacing-lg: 1.2rem;    /* 24px */
+    --spacing-xl: 1.6rem;    /* 32px */
+    
+    /* Bordes */
+    --border-radius-sm: 4px;
+    --border-radius-md: 6px;
+    --border-radius-lg: 8px;
+    /* Sombras */
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para el popup/modal */
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.popup-content {
+    position: relative;
+    background-color: #fff;
+    margin: 2% auto;
+    padding: var(--spacing-xl);
+    width: 80%;
+    max-width: 800px;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-sm);
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+/* Botón de cerrar */
+.close-button {
+    position: absolute;
+    right: var(--spacing-lg);
+    top: var(--spacing-lg);
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--color-text);
+    cursor: pointer;
+    transition: color 0.3s ease;
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.close-button:hover {
+    color: var(--color-primary);
+}
+
+/* Título del popup */
+.popup-title {
+    margin: 0 0 var(--spacing-lg) 0;
+    padding-bottom: var(--spacing-md);
+    border-bottom: 1px solid var(--color-border);
+    color: var(--color-text);
+    font-size: 1.5em;
+}
+
+/* Formulario dentro del popup */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+}
+
+.form-column {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.form-group label {
+    font-weight: 500;
+    color: var(--color-text);
+    font-size: 0.9em;
+}
+
+.form-group input,
+.form-group select {
+    padding: var(--spacing-sm);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-sm);
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+    background-color: #fff;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: var(--color-primary);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+/* Botones del formulario */
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--spacing-md);
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid var(--color-border);
+}
+
+.form-actions .btn {
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border-radius: var(--border-radius-lg);
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn.cancel {
+    background-color: var(--color-background);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+}
+
+.btn.save {
+    background-color: var(--color-primary);
+    color: white;
+    border: 1px solid var(--color-primary);
+}
+
+.btn.cancel:hover {
+    background-color: #e2e6ea;
+    border-color: #000000;
+}
+
+.btn.save:hover {
+    background-color: rgb(22, 98, 250);
+    color: white;
+    border: 1px solid #000000;
+}
+
+/* Campos requeridos */
+.form-group label[for*="required"]::after,
+.form-group label:has(+ input[required])::after {
+    content: ' *';
+    color: #dc3545;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .popup-content {
+        width: 95%;
+        margin: 10px auto;
+        padding: var(--spacing-md);
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-actions {
+        flex-direction: column;
+    }
+
+    .form-actions .btn {
+        width: 100%;
+        margin: var(--spacing-xs) 0;
+    }
+}
+
+/* Scrollbar personalizado */
+.popup-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.popup-content::-webkit-scrollbar-track {
+    background: var(--color-background);
+    border-radius: var(--border-radius-sm);
+}
+
+.popup-content::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: var(--border-radius-sm);
+}
+
+.popup-content::-webkit-scrollbar-thumb:hover {
+    background: var(--color-text-light);
+}
+
+/* Estados de los botones */
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.popup {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.popup-content {
+    animation: slideIn 0.3s ease-out;
+}

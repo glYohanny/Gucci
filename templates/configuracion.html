@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuraciones - Gucci</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/configuraciones.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/generales/general.css') }}">
+</head>
+<body>
+    <div class="menu">
+        <h1><b>Gucci</b></h1>
+
+        <table>
+            <tbody>  
+                <tr> 
+                    <td><a href="{{ url_for('home') }}"><img src="{{ url_for('static', filename='img/iconos/view_quilt_24dp_000000.png') }}" alt=""> Home</a></td> 
+                </tr> 
+                <tr> 
+                    <td><a href="{{ url_for('inventario') }}"><img src="{{ url_for('static', filename='img/iconos/inventario.png') }}" alt=""> inventario</a></td> 
+                </tr> 
+                <tr> 
+                    <td><a href="{{ url_for('interlocutor') }}"><div><img src="{{ url_for('static', filename='img/iconos/interlocutor.png') }}" alt=""> interlocutor</div></a></td> 
+                </tr> 
+                <tr> 
+                    <td><a href="{{ url_for('empleados') }}"><div><img src="{{ url_for('static', filename='img/iconos/groups_24dp_000000.png') }}" alt=""> Usuario</div></a></td>
+                </tr> 
+                <tr> 
+                    <td><a href="{{ url_for('informes') }}"><div><img src="{{ url_for('static', filename='img/iconos/leaderboard_24dp_000000.png') }}" alt=""> Informes</div></a></td> 
+                </tr> 
+                <tr> 
+                    <td><a href="{{ url_for('configuracion') }}"><div><img src="{{ url_for('static', filename='img/iconos/settings_24dp_000000.png') }}" alt=""> Configuración</div></a></td> 
+                </tr> 
+            </tbody> 
+        </table>
+    </div>
+
+    <div class="content">
+        <div class="header">
+            <h2>Configuraciones del Sistema</h2>
+        </div>
+
+        <div class="settings-container">
+            <div class="settings-section">
+                <h3>Configuración General</h3>
+                <div class="setting-item">
+                    <label>Nombre de la Empresa</label>
+                    <input type="text" id="empresaNombre" value="Gucci">
+                    <button onclick="guardarConfiguracion('empresaNombre')">Guardar</button>
+                </div>
+                
+                <div class="setting-item">
+                    <label>Moneda Principal</label>
+                    <select id="monedaPrincipal" onchange="guardarConfiguracion('monedaPrincipal')">
+                        <option value="CLP">Peso Chileno (CLP)</option>
+                        <option value="USD">Dólar (USD)</option>
+                        <option value="EUR">Euro (EUR)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h3>Configuración de Notificaciones</h3>
+                <div class="setting-item">
+                    <label>Notificaciones por Email</label>
+                    <input type="checkbox" id="notificacionesEmail" onchange="guardarConfiguracion('notificacionesEmail')">
+                </div>
+                
+                <div class="setting-item">
+                    <label>Alertas de Inventario Bajo</label>
+                    <input type="checkbox" id="alertasInventario" onchange="guardarConfiguracion('alertasInventario')">
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h3>Respaldo de Datos</h3>
+                <div class="setting-item">
+                    <button onclick="realizarRespaldo()" class="backup-btn">Realizar Respaldo</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/configuraciones.js') }}"></script>
+</body>
+</html>

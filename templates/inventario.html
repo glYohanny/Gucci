@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventario</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styleinventario.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/generales/general.css') }}">
+</head>
+<body>
+    <div class="menu">
+        <h1><b>Gucci</b></h1>
+    
+        <table>
+            <tbody>  
+              <tr> 
+                <td><a href="{{ url_for('home') }}"><img src="{{ url_for('static', filename='img/iconos/view_quilt_24dp_000000.png') }}" alt=""> Home</a></td> 
+              </tr> 
+              <tr> 
+                <td><a href="{{ url_for('inventario') }}"><img src="{{ url_for('static', filename='img/iconos/inventario.png') }}" alt=""> inventario</a></td> 
+              </tr> 
+              <tr> 
+                <td><a href="{{ url_for('interlocutor') }}"><div><img src="{{ url_for('static', filename='img/iconos/interlocutor.png') }}" alt=""> interlocutor</div></a></td> 
+              </tr> 
+              <tr> 
+                <td><a href="{{ url_for('empleados') }}"><div><img src="{{ url_for('static', filename='img/iconos/groups_24dp_000000.png') }}" alt=""> Usuario</div></a></td>
+              </tr> 
+              <tr> 
+                <td><a href="{{ url_for('informes') }}"><div><img src="{{ url_for('static', filename='img/iconos/leaderboard_24dp_000000.png') }}" alt=""> Informes</div></a></td> 
+              </tr> 
+              <tr> 
+                <td><a href="{{ url_for('configuracion') }}"><div><img src="{{ url_for('static', filename='img/iconos/settings_24dp_000000.png') }}" alt=""> Configuración</div></a></td> 
+              </tr> 
+            </tbody> 
+          </table>
+    </div>
+
+    <div class="contenido">
+        <div class="barra">
+            <div class="search-container"> 
+                <div class="search-box"> 
+                    <input type="text" id="searchInput" placeholder="Buscar producto..."> 
+                    <button><img src="{{ url_for('static', filename='img/iconos/search_24dp_000000.png') }}" alt=""></button>
+                </div> 
+            </div>
+        </div>
+    
+        <div class="Pcontenido">
+            <h2><img class="reportes" src="{{ url_for('static', filename='img/iconos/inventario.png') }}" alt=""> <b>Inventario</b></h2>
+            
+            <div class="actions">
+                <button id="newProducto" class="btn"><img src="{{ url_for('static', filename='img/iconos/agrgar.png') }}" alt=""> Nuevo Producto</button>
+                <button id="editProducto" class="btn" disabled><img src="{{ url_for('static', filename='img/iconos/editar.png') }}" alt=""> Editar Producto</button>
+                <button id="deleteProducto" class="btn" disabled><img src="{{ url_for('static', filename='img/iconos/eliminar.png') }}" alt=""> Eliminar Producto</button>
+            </div>
+
+            <table id="data-table">
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Nombre</th>
+                        <th>Tipo</th>
+                        <th>Stock</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <div id="pagination"></div>    
+        </div>
+    </div>
+
+    <div id="productoModal" class="popup">
+        <div class="popup-content">
+            <span class="close-button">&times;</span>
+            <h2 class="modal-title">Nuevo Producto</h2>
+            
+            <form id="productoForm">
+                <div class="form-grid">
+                    <div class="form-column">
+                        <div class="form-group">
+                            <label for="codigo">Código: *</label>
+                            <input type="text" id="codigo" name="codigo" required>
+                        </div>
+    
+                        <div class="form-group">
+                            <label for="nombre">Nombre: *</label>
+                            <input type="text" id="nombre" name="nombre" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="tipo_prenda">Tipo de Prenda: *</label>
+                            <input type="text" id="tipo_prenda" name="tipo_prenda" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="marca">Marca:</label>
+                            <input type="text" id="marca" name="marca">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="descripcion">Descripción:</label>
+                            <textarea id="descripcion" name="descripcion" rows="3"></textarea>
+                        </div>
+                    </div>
+    
+                    <div class="form-column">
+                        <div class="form-group">
+                            <label for="talla">Talla:</label>
+                            <input type="text" id="talla" name="talla">
+                        </div>
+    
+                        <div class="form-group">
+                            <label for="color">Color:</label>
+                            <input type="text" id="color" name="color">
+                        </div>
+    
+                        <div class="form-group">
+                            <label for="valor_compra">Valor de Compra: *</label>
+                            <input type="number" id="valor_compra" name="valor_compra" required min="0" step="0.01">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="valor_venta">Valor de Venta: *</label>
+                            <input type="number" id="valor_venta" name="valor_venta" required min="0" step="0.01">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="stock_minimo">Stock Mínimo:</label>
+                            <input type="number" id="stock_minimo" name="stock_minimo" min="0" value="5">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="estado">Estado:</label>
+                            <select id="estado" name="estado">
+                                <option value="Activo">Activo</option>
+                                <option value="Inactivo">Inactivo</option>
+                                <option value="Descontinuado">Descontinuado</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="form-actions">
+                    <button type="button" class="btn cancel">Cancelar</button>
+                    <button type="submit" class="btn save">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='scripts/inventario.js') }}"></script>
+</body>
+</html>

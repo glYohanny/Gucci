@@ -1,0 +1,11 @@
+/* Estilos específicos de informes */
+.descargas {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    align-items: start;
+}
+
+.iconDescarga {
+    width: 100px;
+}

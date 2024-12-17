@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Empleados</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styleUsuarios.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/generales/general.css') }}">
+</head>
+<body>
+    <div class="menu">
+        <h1><b>Gucci</b></h1>
+    
+        <table>
+            <tbody>  
+              <tr> 
+                <td><a href="{{ url_for('home') }}"><img src="{{ url_for('static', filename='img/iconos/view_quilt_24dp_000000.png') }}" alt=""> Home</a></td> 
+              </tr> 
+              <tr> 
+                <td><a href="{{ url_for('inventario') }}"><img src="{{ url_for('static', filename='img/iconos/inventario.png') }}" alt=""> inventario</a></td> 
+              </tr> 
+              <tr> 
+                <td><a href="{{ url_for('interlocutor') }}"><div><img src="{{ url_for('static', filename='img/iconos/interlocutor.png') }}" alt=""> interlocutor</div></a></td> 
+              </tr> 
+              <tr> 
+                <td><a href="{{ url_for('empleados') }}"><div><img src="{{ url_for('static', filename='img/iconos/groups_24dp_000000.png') }}" alt=""> Usuario</div></a></td>
+              </tr> 
+              <tr> 
+                <td><a href="{{ url_for('informes') }}"><div><img src="{{ url_for('static', filename='img/iconos/leaderboard_24dp_000000.png') }}" alt=""> Informes</div></a></td> 
+              </tr> 
+              <tr> 
+                <td><a href="{{ url_for('configuracion') }}"><div><img src="{{ url_for('static', filename='img/iconos/settings_24dp_000000.png') }}" alt=""> Configuración</div></a></td> 
+              </tr> 
+            </tbody> 
+          </table>
+    </div>
+    
+    <div class="contenido">
+        <div class="barra">
+            <div class="search-container"> 
+                <div class="search-box"> 
+                    <input type="text" id="searchInput" placeholder="Buscar empleado..."> 
+                    <button><img src="{{ url_for('static', filename='img/iconos/search_24dp_000000.png') }}" alt=""></button>
+                </div> 
+            </div>
+        </div>
+
+        <div class="actions">
+            <button id="newEmpleado" class="btn">Nuevo empleado</button>
+            <button id="editEmpleado" class="btn" disabled>Editar empleado</button>
+            <button id="deleteEmpleado" class="btn" disabled>Eliminar empleado</button>
+        </div>
+
+        <div class="Pcontenido">
+            <table id="data-table">
+                <thead>
+                    <tr>
+                        <th>Empleado</th>
+                        <th>RUT</th>
+                        <th>Sexo</th>
+                        <th>Teléfono</th>
+                        <th>Email</th>
+                        <th>Tipo</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <div id="pagination"></div>    
+        </div>    
+    </div>
+
+    <!-- Modal para Crear/Editar Empleado -->
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <span class="close-button">&times;</span>
+            <h2 class="popup-title">Nuevo Empleado</h2>
+            
+            <div class="tab">
+                <button class="tablinks" data-tab="DetalleEmpleado">Detalle de Empleado</button>
+                <button class="tablinks" data-tab="Cuenta">Cuenta</button>
+                <button class="tablinks" data-tab="Permisos">Permisos</button>
+            </div>
+
+            <form id="empleadoForm">
+                <!-- Pestaña: Detalle de Empleado -->
+                <div id="DetalleEmpleado" class="tabcontent">
+                    <div class="form-section">
+                        <h3>Tipo de empleado</h3>
+                        <div class="radio-group">
+                            <label>
+                                <input type="radio" name="empleo" value="tiempoCompleto"> 
+                                Tiempo Completo
+                            </label>
+                            <label>
+                                <input type="radio" name="empleo" value="partTime"> 
+                                Part-time
+                            </label>
+                            <label>
+                                <input type="radio" name="empleo" value="temporal"> 
+                                Temporal
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>Sexo</h3>
+                        <div class="radio-group">
+                            <label>
+                                <input type="radio" name="sexo" value="M"> 
+                                Masculino
+                            </label>
+                            <label>
+                                <input type="radio" name="sexo" value="F"> 
+                                Femenino
+                            </label>
+                            <label>
+                                <input type="radio" name="sexo" value="Otro"> 
+                                Otro
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-column">
+                            <div class="form-group">
+                                <label>Nombre Completo: *</label>
+                                <input type="text" name="nombreCompleto" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Fecha de Nacimiento: *</label>
+                                <input type="date" name="fechaNacimiento" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="rut">RUT: *</label>
+                                <input type="text" id="rut" name="rut" required
+                                       placeholder="Ej: 12345678-9" title="Ingrese RUT en formato 12345678-9">
+                            </div>
+                            <div class="form-group">
+                                <label>Teléfono:</label>
+                                <input type="tel" name="telefono">
+                            </div>
+                        </div>
+                        
+                        <div class="form-column">
+                            <div class="form-group">
+                                <label>Email: *</label>
+                                <input type="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Número de Casa:</label>
+                                <input type="text" name="numeroCasa">
+                            </div>
+                            <div class="form-group">
+                                <label>Ciudad:</label>
+                                <input type="text" name="ciudad">
+                            </div>
+                            <div class="form-group">
+                                <label>Código Postal:</label>
+                                <input type="text" name="codigoPostal">
+                            </div>
+                        </div>
+                        
+                        <div class="form-column">
+                            <div class="form-group">
+                                <label>Región: *</label>
+                                <select name="region" id="region-select" required>
+                                    <option value="">Seleccione una región</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Comuna: *</label>
+                                <select name="comuna" id="comuna-select" required disabled>
+                                    <option value="">Seleccione una comuna</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Foto:</label>
+                                <input type="file" name="foto" accept="image/*">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pestaña: Cuenta -->
+                <div id="Cuenta" class="tabcontent">
+                    <div class="form-grid">
+                        <div class="form-column">
+                            <div class="form-group">
+                                <label>Nombre de usuario: *</label>
+                                <input type="text" name="nombreUsuario" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Contraseña: *</label>
+                                <input type="password" name="contrasena" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-column">
+                            <div class="form-group">
+                                <label>Confirmar contraseña: *</label>
+                                <input type="password" name="confirmarContrasena" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Estado:</label>
+                                <select name="estado">
+                                    <option value="Activo">Activo</option>
+                                    <option value="Inactivo">Inactivo</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-column">
+                            <div class="form-group">
+                                <label>Cargo:</label>
+                                <input type="text" name="cargo">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+             <!-- Pestaña: Permisos -->
+             <div id="Permisos" class="tabcontent">
+                <div class="permissions-grid">
+                    <!-- Dashboard -->
+                    <div class="permission-section">
+                        <h3>Dashboard</h3>
+                        <div class="permission-group">
+                            <label class="switch">
+                                <input type="checkbox" data-permission="dashboard-ver-metricas-generales"> 
+                                <span class="slider"></span>
+                                Ver métricas generales
+                            </label>
+                            <label class="switch">
+                                <input type="checkbox" data-permission="dashboard-ver-metricas-detalladas"> 
+                                <span class="slider"></span>
+                                Ver métricas detalladas
+                            </label>
+                            <label class="switch">
+                                <input type="checkbox" data-permission="dashboard-exportar-datos"> 
+                                <span class="slider"></span>
+                                Exportar datos
+                            </label>
+                            <label class="switch">
+                                <input type="checkbox" data-permission="dashboard-personalizar-vistas"> 
+                                <span class="slider"></span>
+                                Personalizar vistas
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Inventario -->
+                    <div class="permission-section">
+                        <h3>Inventario</h3>
+                        <div class="permission-group">
+                            <label class="switch">
+                                <input type="checkbox" data-permission="inventario-ver"> 
+                                <span class="slider"></span>
+                                Ver inventario
+                            </label>
+                            <label class="switch">
+                                <input type="checkbox" data-permission="inventario-agregar"> 
+                                <span class="slider"></span>
+                                Agregar productos
+                            </label>
+                            <label class="switch">
+                                <input type="checkbox" data-permission="inventario-modificar"> 
+                                <span class="slider"></span>
+                                Modificar productos
+                            </label>
+                            <label class="switch">
+                                <input type="checkbox" data-permission="inventario-eliminar"> 
+                                <span class="slider"></span>
+                                Eliminar productos
+                            </label>
+                            <label class="switch">
+                                <input type="checkbox" data-permission="inventario-ajustar"> 
+                                <span class="slider"></span>
+                                Ajustar stock
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Empleados -->
+                    <div class="permission-section">
+                        <h3>Empleados</h3>
+                        <div class="permission-group">
+                            <label class="switch">
+                                <input type="checkbox" data-permission="empleados-ver"> 
+                                <span class="slider"></span>
+                                Ver empleados
+                            </label>
+                            <label class="switch">
+                                <input type="checkbox" data-permission="empleados-agregar"> 
+                                <span class="slider"></span>
+                                Agregar empleados
+                            </label>
+                            <label class="switch">
+                                <input type="checkbox" data-permission="empleados-modificar"> 
+                                <span class="slider"></span>
+                                Modificar empleados
+                            </label>
+                            <label class="switch">
+                                <input type="checkbox" data-permission="empleados-eliminar"> 
+                                <span class="slider"></span>
+                                Eliminar empleados
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Reportes -->
+                    <div class="permission-section">
+                        <h3>Reportes</h3>
+                        <div class="permission-group">
+                            <label class="switch">
+                                <input type="checkbox" data-permission="reportes-ver"> 
+                                <span class="slider"></span>
+                                Ver reportes
+                            </label>
+                            <label class="switch">
+                                <input type="checkbox" data-permission="reportes-generar"> 
+                                <span class="slider"></span>
+                                Generar reportes
+                            </label>
+                            <label class="switch">
+                                <input type="checkbox" data-permission="reportes-exportar"> 
+                                <span class="slider"></span>
+                                Exportar reportes
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="button" class="btn cancel">Cancelar</button>
+                <button type="submit" class="btn save">Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='scripts/empleados.js') }}"></script>
+</body>
+</html>

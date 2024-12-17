@@ -1,0 +1,214 @@
+/* Estilos del Modal/Popup */
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+.popup-content {
+    background-color: #fff;
+    margin: 2% auto;
+    padding: var(--spacing-lg);
+    width: 90%;
+    max-width: 1200px;
+    border-radius: var(--border-radius-lg);
+    position: relative;
+}
+
+.close-button {
+    position: absolute;
+    right: var(--spacing-lg);
+    top: var(--spacing-lg);
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #666;
+}
+
+/* Pestañas */
+.tab {
+    display: flex;
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: var(--spacing-lg);
+    gap: var(--spacing-xs);
+}
+
+.tablinks {
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: #666;
+    border-bottom: 2px solid transparent;
+}
+
+.tablinks:hover {
+    color: var(--color-primary);
+}
+
+.tablinks.active {
+    color: var(--color-primary);
+    border-bottom: 2px solid var(--color-primary);
+}
+
+.tabcontent {
+    display: none;
+    padding: var(--spacing-md) 0;
+}
+
+/* Secciones del formulario */
+.form-section {
+    margin-bottom: var(--spacing-xl);
+}
+
+.form-section h3 {
+    font-size: 1rem;
+    margin-bottom: var(--spacing-md);
+    color: #333;
+}
+
+/* Grupos de radio buttons */
+.radio-group {
+    display: flex;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+}
+
+.radio-group label {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    cursor: pointer;
+}
+
+/* Grid del formulario */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
+}
+
+.form-group {
+    margin-bottom: var(--spacing-md);
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: var(--spacing-xs);
+    font-size: 0.9rem;
+    color: #444;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: var(--spacing-sm);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-sm);
+    font-size: 0.9rem;
+}
+
+/* Switches de permisos */
+.permissions-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-xl);
+}
+
+.permission-section {
+    background-color: #f8f9fa;
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius-md);
+}
+
+.permission-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.switch {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    cursor: pointer;
+}
+
+.switch input {
+    display: none;
+}
+
+.slider {
+    position: relative;
+    width: 40px;
+    height: 20px;
+    background-color: #ccc;
+    border-radius: 20px;
+    transition: 0.3s;
+}
+
+.slider:before {
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background-color: white;
+    border-radius: 50%;
+    top: 2px;
+    left: 2px;
+    transition: 0.3s;
+}
+
+input:checked + .slider {
+    background-color: var(--color-primary);
+}
+
+input:checked + .slider:before {
+    transform: translateX(20px);
+}
+
+/* Botones de acción */
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--spacing-md);
+    padding-top: var(--spacing-lg);
+    margin-top: var(--spacing-lg);
+    border-top: 1px solid var(--color-border);
+}
+
+.btn {
+    padding: var(--spacing-sm) var(--spacing-xl);
+    border-radius: var(--border-radius-md);
+    font-size: 0.9rem;
+    cursor: pointer;
+    border: none;
+    transition: 0.3s;
+}
+
+.btn.cancel {
+    background-color: #f8f9fa;
+    color: #666;
+}
+
+.btn.save {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+.btn:hover {
+    opacity: 0.9;
+}
+
+/* Estados de los botones */
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}

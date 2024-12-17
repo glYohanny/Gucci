@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/informe.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/generales/general.css') }}">
+</head>
+<body>
+  
+  <div class="menu">
+    <h1><b>Gucci</b></h1>
+
+    <table>
+      <tbody>  
+        <tr> 
+          <td><a href="{{ url_for('home') }}"><img src="{{ url_for('static', filename='img/iconos/view_quilt_24dp_000000.png') }}" alt=""> Home</a></td> 
+        </tr> 
+        <tr> 
+          <td><a href="{{ url_for('inventario') }}"><img src="{{ url_for('static', filename='img/iconos/inventario.png') }}" alt=""> inventario</a></td> 
+        </tr> 
+        <tr> 
+          <td><a href="{{ url_for('interlocutor') }}"><div><img src="{{ url_for('static', filename='img/iconos/interlocutor.png') }}" alt=""> interlocutor</div></a></td> 
+        </tr> 
+        <tr> 
+          <td><a href="{{ url_for('empleados') }}"><div><img src="{{ url_for('static', filename='img/iconos/groups_24dp_000000.png') }}" alt=""> Usuario</div></a></td>
+        </tr> 
+        <tr> 
+          <td><a href="{{ url_for('informes') }}"><div><img src="{{ url_for('static', filename='img/iconos/leaderboard_24dp_000000.png') }}" alt=""> Informes</div></a></td> 
+        </tr> 
+        <tr> 
+          <td><a href="{{ url_for('configuracion') }}"><div><img src="{{ url_for('static', filename='img/iconos/settings_24dp_000000.png') }}" alt=""> Configuración</div></a></td> 
+        </tr> 
+      </tbody> 
+    </table>
+</div>
+
+
+  <div class="contenido">
+    <div class="barra">
+      <div class="search-container"> 
+        <div class="search-box"> 
+          <input type="text" placeholder="Buscar..."> 
+          <button><img src="{{ url_for('static', filename='img/iconos/search_24dp_000000.png') }}" alt=""></button>
+        </div> 
+      </div>
+    </div>
+  
+    <div class="Pcontenido">
+      <h2><img class="reportes" src="{{ url_for('static', filename='img/iconos/view_quilt_24dp_000000.png') }}" alt="icono de descripcion"><b>Informes</b></h2>
+        <div class="descargas">
+            <div class="card">
+                <h3>EXCEL</h3>
+                <a href="#"> <img class="iconDescarga" src="{{ url_for('static', filename='img/iconos/table_chart_24dp_000000_FILL0_wght400_GRAD0_opsz24.png') }}" alt=""></a>
+            </div>
+            <div class="card">
+                <h3>PDF</h3>
+                <a href="#"> <img class="iconDescarga" src="{{ url_for('static', filename='img/iconos/picture_as_pdf_24dp_000000_FILL0_wght400_GRAD0_opsz24.png') }}" alt=""></a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

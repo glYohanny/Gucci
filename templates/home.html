@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página principal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styleHome.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/generales/general.css') }}">
+</head>
+<body>
+    <div class="menu">
+        <h1><b>Gucci</b></h1>
+    
+        <table>
+            <tbody>  
+              <tr> 
+                <td><a href="{{ url_for('home') }}"><img src="{{ url_for('static', filename='img/iconos/view_quilt_24dp_000000.png') }}" alt=""> Home</a></td> 
+              </tr> 
+              <tr> 
+                <td><a href="{{ url_for('inventario') }}"><img src="{{ url_for('static', filename='img/iconos/inventario.png') }}" alt=""> inventario</a></td> 
+              </tr> 
+              <tr> 
+                <td><a href="{{ url_for('interlocutor') }}"><div><img src="{{ url_for('static', filename='img/iconos/interlocutor.png') }}" alt=""> interlocutor</div></a></td> 
+              </tr> 
+              <tr> 
+                <td><a href="{{ url_for('empleados') }}"><div><img src="{{ url_for('static', filename='img/iconos/groups_24dp_000000.png') }}" alt=""> Usuario</div></a></td>
+              </tr> 
+              <tr> 
+                <td><a href="{{ url_for('informes') }}"><div><img src="{{ url_for('static', filename='img/iconos/leaderboard_24dp_000000.png') }}" alt=""> Informes</div></a></td> 
+              </tr> 
+              <tr> 
+                <td><a href="{{ url_for('configuracion') }}"><div><img src="{{ url_for('static', filename='img/iconos/settings_24dp_000000.png') }}" alt=""> Configuración</div></a></td> 
+              </tr> 
+            </tbody> 
+        </table>
+    </div>
+
+    <div class="contenido">
+        <div class="barra">
+            <div class="search-container"> 
+                <div class="search-box"> 
+                    <input type="text" id="searchInput" placeholder="Buscar orden..."> 
+                    <button><img src="{{ url_for('static', filename='img/iconos/search_24dp_000000.png') }}" alt="Icono Buscar"></button>
+                </div> 
+            </div>
+        </div>
+    
+        <div class="Pcontenido">
+            <h2><img class="reportes" src="{{ url_for('static', filename='img/iconos/view_quilt_24dp_000000.png') }}" alt="Icono Resumen"> <b>Resumen</b></h2>
+            <div class="card">
+                <h3>Ganancia Total</h3>
+                <p id="gananciaTotal" class="amount">$0</p>
+                <p id="crecimiento" class="growth">0%</p>
+            </div>
+            <h2><img class="reportes" src="{{ url_for('static', filename='img/iconos/description_24dp_000000.png') }}" alt="Icono Órdenes"> Órdenes</h2>
+            <div class="actions">
+                <button id="editarOrden" class="btn" disabled><img src="{{ url_for('static', filename='img/iconos/editar.png') }}" alt="Icono Editar"> Editar</button>
+                <button id="eliminarOrden" class="btn" disabled><img src="{{ url_for('static', filename='img/iconos/eliminar.png') }}" alt="Icono Eliminar"> Eliminar</button>
+                <button id="nuevaOrden" class="btn"><img src="{{ url_for('static', filename='img/iconos/agrgar.png') }}" alt="Icono Nueva Orden"> Nueva Orden</button>
+            </div>
+
+            <table id="data-table">
+                <thead>
+                    <tr>
+                        <th>Interlocutor</th>
+                        <th>Empresa</th>
+                        <th>Valor de Orden</th>
+                        <th>Fecha de Orden</th>
+                        <th>Estado</th>
+                        <th>Tipo</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <div id="pagination"></div>    
+        </div>
+    </div>
+
+    <!-- Modal para Orden -->
+    <div id="ordenModal" class="popup">
+        <div class="popup-content">
+            <span class="close-button">&times;</span>
+            <h2 class="modal-title">Nueva Orden</h2>
+            
+            <form id="ordenForm">
+                <div class="form-grid">
+                    <div class="form-column">
+                        <div class="form-group">
+                            <label for="tipo_orden">Tipo de Orden: *</label>
+                            <select name="tipo_orden" id="tipo_orden" required>
+                                <option value="">Seleccione tipo de orden</option>
+                                <option value="Entrada">Orden de Entrada</option>
+                                <option value="Salida">Orden de Salida</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="interlocutor">Interlocutor: *</label>
+                            <select name="interlocutor" id="interlocutor" required>
+                                <option value="">Seleccione primero el tipo de orden</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="valor">Valor de Orden: *</label>
+                            <input type="number" id="valor" name="valor" required min="0" step="0.01">
+                        </div>
+                    </div>
+
+                    <div class="form-column">
+                        <div class="form-group">
+                            <label for="fecha">Fecha de Orden: *</label>
+                            <input type="date" id="fecha" name="fecha" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="estado">Estado: *</label>
+                            <select id="estado" name="estado" required>
+                                <option value="Pendiente">Pendiente</option>
+                                <option value="Procesada">Procesada</option>
+                                <option value="Cancelada">Cancelada</option>
+                                <option value="Completada">Completada</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn cancel">Cancelar</button>
+                    <button type="submit" class="btn save">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='scripts/home.js') }}"></script>
+</body>
+</html>

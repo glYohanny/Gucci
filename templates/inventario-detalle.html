@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle de Producto</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styleinventario.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/generales/general.css') }}">
+</head>
+<body>
+    <div class="menu">
+        <h1><b>Gucci</b></h1>
+    
+        <table>
+            <tbody>  
+              <tr> 
+                <td><a href="{{ url_for('home') }}"><img src="{{ url_for('static', filename='img/iconos/view_quilt_24dp_000000.png') }}" alt=""> Home</a></td> 
+              </tr> 
+              <tr> 
+                <td><a href="{{ url_for('inventario') }}"><img src="{{ url_for('static', filename='img/iconos/inventario.png') }}" alt=""> inventario</a></td> 
+              </tr> 
+              <tr> 
+                <td><a href="{{ url_for('interlocutor') }}"><div><img src="{{ url_for('static', filename='img/iconos/interlocutor.png') }}" alt=""> interlocutor</div></a></td> 
+              </tr> 
+              <tr> 
+                <td><a href="{{ url_for('empleados') }}"><div><img src="{{ url_for('static', filename='img/iconos/groups_24dp_000000.png') }}" alt=""> Usuario</div></a></td>
+              </tr> 
+              <tr> 
+                <td><a href="{{ url_for('informes') }}"><div><img src="{{ url_for('static', filename='img/iconos/leaderboard_24dp_000000.png') }}" alt=""> Informes</div></a></td> 
+              </tr> 
+              <tr> 
+                <td><a href="{{ url_for('configuracion') }}"><div><img src="{{ url_for('static', filename='img/iconos/settings_24dp_000000.png') }}" alt=""> Configuración</div></a></td> 
+              </tr> 
+            </tbody> 
+        </table>
+    </div>
+
+    <div class="contenido">
+        <div class="barra">
+            <button onclick="window.history.back()" class="btn-back">
+                <img src="{{ url_for('static', filename='img/iconos/back.png') }}" alt=""> Volver
+            </button>
+        </div>
+    
+        <div class="Pcontenido">
+            <h2><img class="reportes" src="{{ url_for('static', filename='img/iconos/inventario.png') }}" alt=""> <b>Detalle del Producto</b></h2>
+            
+            <div class="producto-grid">
+                <!-- Información Principal -->
+                <div class="card info-principal">
+                    <h3>Información Principal</h3>
+                    <div class="info-content">
+                        <div class="info-row">
+                            <span class="label">Código:</span>
+                            <span id="codigo" class="value"></span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label">Nombre:</span>
+                            <span id="nombre" class="value"></span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label">Tipo:</span>
+                            <span id="tipo_prenda" class="value"></span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label">Estado:</span>
+                            <span id="estado" class="value"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Detalles de Stock -->
+                <div class="card info-stock">
+                    <h3>Información de Stock</h3>
+                    <div class="info-content">
+                        <div class="info-row">
+                            <span class="label">Stock Actual:</span>
+                            <span id="stock_actual" class="value"></span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label">Stock Mínimo:</span>
+                            <span id="stock_minimo" class="value"></span>
+                        </div>
+                        <div class="stock-status" id="stock_status"></div>
+                    </div>
+                </div>
+
+                <!-- Detalles de Precio -->
+                <div class="card info-precios">
+                    <h3>Información de Precios</h3>
+                    <div class="info-content">
+                        <div class="info-row">
+                            <span class="label">Valor de Compra:</span>
+                            <span id="valor_compra" class="value"></span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label">Valor de Venta:</span>
+                            <span id="valor_venta" class="value"></span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label">Margen:</span>
+                            <span id="margen" class="value"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Características -->
+                <div class="card info-caracteristicas">
+                    <h3>Características</h3>
+                    <div class="info-content">
+                        <div class="info-row">
+                            <span class="label">Marca:</span>
+                            <span id="marca" class="value"></span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label">Talla:</span>
+                            <span id="talla" class="value"></span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label">Color:</span>
+                            <span id="color" class="value"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Descripción -->
+            <div class="card descripcion-card">
+                <h3>Descripción</h3>
+                <p id="descripcion"></p>
+            </div>
+
+            <!-- Historial de Órdenes -->
+            <div class="card ordenes-card">
+                <h3>Historial de Órdenes</h3>
+                <table id="ordenes-table">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Tipo</th>
+                            <th>Estado</th>
+                            <th>Cantidad</th>
+                            <th>Precio Unitario</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='scripts/inventario-detalle.js') }}"></script>
+</body>
+</html>

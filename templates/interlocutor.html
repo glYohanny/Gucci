@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interlocutores</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styleinterlocutor.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/generales/general.css') }}">
+</head>
+<body>
+    <div class="menu">
+        <h1><b>Gucci</b></h1>
+    
+        <table>
+            <tbody>  
+              <tr> 
+                <td><a href="{{ url_for('home') }}"><img src="{{ url_for('static', filename='img/iconos/view_quilt_24dp_000000.png') }}" alt=""> Home</a></td> 
+              </tr> 
+              <tr> 
+                <td><a href="{{ url_for('inventario') }}"><img src="{{ url_for('static', filename='img/iconos/inventario.png') }}" alt=""> inventario</a></td> 
+              </tr> 
+              <tr> 
+                <td><a href="{{ url_for('interlocutor') }}"><div><img src="{{ url_for('static', filename='img/iconos/interlocutor.png') }}" alt=""> interlocutor</div></a></td> 
+              </tr> 
+              <tr> 
+                <td><a href="{{ url_for('empleados') }}"><div><img src="{{ url_for('static', filename='img/iconos/groups_24dp_000000.png') }}" alt=""> Usuario</div></a></td>
+              </tr> 
+              <tr> 
+                <td><a href="{{ url_for('informes') }}"><div><img src="{{ url_for('static', filename='img/iconos/leaderboard_24dp_000000.png') }}" alt=""> Informes</div></a></td> 
+              </tr> 
+              <tr> 
+                <td><a href="{{ url_for('configuracion') }}"><div><img src="{{ url_for('static', filename='img/iconos/settings_24dp_000000.png') }}" alt=""> Configuración</div></a></td> 
+              </tr> 
+            </tbody> 
+          </table>
+    </div>
+
+    <div class="contenido">
+        <div class="barra">
+            <div class="search-container"> 
+                <div class="search-box"> 
+                    <input type="text" id="searchInput" placeholder="Buscar interlocutor..."> 
+                    <button><img src="{{ url_for('static', filename='img/iconos/search_24dp_000000.png') }}" alt=""></button>
+                </div> 
+            </div>
+        </div>
+    
+        <div class="Pcontenido">
+            <h2><img class="reportes" src="{{ url_for('static', filename='img/iconos/interlocutor.png') }}" alt=""> <b>Interlocutores</b></h2>
+            
+
+            <div class="actions">
+                <button id="newInterlocutor" class="btn"><img src="{{ url_for('static', filename='img/iconos/agrgar.png') }}" alt="Icono Editar"> Nuevo Interlocutor</button>
+                <button id="editInterlocutor" class="btn" disabled><img src="{{ url_for('static', filename='img/iconos/editar.png') }}" alt="Icono Eliminar"> Editar Interlocutor</button>
+                <button id="deleteInterlocutor" class="btn" disabled><img src="{{ url_for('static', filename='img/iconos/eliminar.png') }}" alt="Icono Nueva Orden"> Eliminar Interlocutor</button>
+            </div>
+
+            <table id="data-table">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Empresa</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <div id="pagination"></div>    
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <div id="interlocutorModal" class="popup">
+        <div class="popup-content">
+            <span class="close-button">&times;</span>
+            <h2 class="modal-title">Nuevo Interlocutor</h2>
+            
+            <form id="interlocutorForm">
+                <div class="form-grid">
+                    <div class="form-column">
+                        <div class="form-group">
+                            <label for="tipo_interlocutor">Tipo de Interlocutor: *</label>
+                            <select name="tipo_interlocutor" id="tipo_interlocutor" required>
+                                <option value="">Seleccione tipo</option>
+                                <option value="cliente">Cliente</option>
+                                <option value="proveedor">Proveedor</option>
+                            </select>
+                        </div>
+    
+                        <div class="form-group">
+                            <label for="nombre">Nombre: *</label>
+                            <input type="text" id="nombre" name="nombre" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="empresa">Empresa: *</label>
+                            <input type="text" id="empresa" name="empresa" required>
+                        </div>
+                    </div>
+    
+                    <div class="form-column">
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email">
+                        </div>
+    
+                        <div class="form-group">
+                            <label for="telefono">Teléfono:</label>
+                            <input type="tel" id="telefono" name="telefono">
+                        </div>
+    
+                        <div class="form-group">
+                            <label for="direccion">Dirección:</label>
+                            <input type="text" id="direccion" name="direccion">
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="form-actions">
+                    <button type="button" class="btn cancel">Cancelar</button>
+                    <button type="submit" class="btn save">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='scripts/interlocutor.js') }}"></script>
+</body>
+</html>

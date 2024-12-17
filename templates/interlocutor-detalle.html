@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle Interlocutor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styleinterlocutor.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/generales/general.css') }}">
+</head>
+<body>
+    <div class="menu">
+        <h1><b>Gucci</b></h1>
+    
+        <table>
+            <tbody>  
+              <tr> 
+                <td><a href="{{ url_for('home') }}"><img src="{{ url_for('static', filename='img/iconos/view_quilt_24dp_000000.png') }}" alt=""> Home</a></td> 
+              </tr> 
+              <tr> 
+                <td><a href="{{ url_for('inventario') }}"><img src="{{ url_for('static', filename='img/iconos/inventario.png') }}" alt=""> inventario</a></td> 
+              </tr> 
+              <tr> 
+                <td><a href="{{ url_for('interlocutor') }}"><div><img src="{{ url_for('static', filename='img/iconos/interlocutor.png') }}" alt=""> interlocutor</div></a></td> 
+              </tr> 
+              <tr> 
+                <td><a href="{{ url_for('empleados') }}"><div><img src="{{ url_for('static', filename='img/iconos/groups_24dp_000000.png') }}" alt=""> Usuario</div></a></td>
+              </tr> 
+              <tr> 
+                <td><a href="{{ url_for('informes') }}"><div><img src="{{ url_for('static', filename='img/iconos/leaderboard_24dp_000000.png') }}" alt=""> Informes</div></a></td> 
+              </tr> 
+              <tr> 
+                <td><a href="{{ url_for('configuracion') }}"><div><img src="{{ url_for('static', filename='img/iconos/settings_24dp_000000.png') }}" alt=""> Configuración</div></a></td> 
+              </tr> 
+            </tbody> 
+          </table>
+    </div>
+
+    <div class="contenido">
+        <div class="barra">
+            <div class="search-container"> 
+                <div class="search-box"> 
+                    <input type="text" id="searchInput" placeholder="Buscar orden..."> 
+                    <button><img src="{{ url_for('static', filename='img/iconos/search_24dp_000000.png') }}" alt=""></button>
+                </div> 
+            </div>
+        </div>
+    
+        <div class="Pcontenido">
+            <div class="nav-history">
+                <a href="{{ url_for('interlocutor') }}">Interlocutores</a> &gt; 
+                <span id="breadcrumb-nombre">Detalles</span>
+            </div>
+
+            <div class="cards-container">
+                <div class="card">
+                    <h3>Total de Órdenes</h3>
+                    <p id="totalOrdenes" class="amount">0</p>
+                </div>
+                <div class="card">
+                    <h3>Valor Total</h3>
+                    <p id="valorTotal" class="amount">$0</p>
+                </div>
+                <div class="card">
+                    <h3>Última Orden</h3>
+                    <p id="ultimaOrden" class="date">Sin órdenes</p>
+                </div>
+            </div>
+
+            <div class="interlocutor-info">
+                <h3>Información del Interlocutor</h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <label>Nombre:</label>
+                        <p id="nombreInterlocutor">-</p>
+                    </div>
+                    <div class="info-item">
+                        <label>Tipo:</label>
+                        <p id="tipoInterlocutor">-</p>
+                    </div>
+                    <div class="info-item">
+                        <label>Email:</label>
+                        <p id="emailInterlocutor">-</p>
+                    </div>
+                    <div class="info-item">
+                        <label>Teléfono:</label>
+                        <p id="telefonoInterlocutor">-</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2><img class="reportes" src="{{ url_for('static', filename='img/iconos/description_24dp_000000.png') }}" alt=""> Historial de Órdenes</h2>
+            
+            <table id="data-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Tipo</th>
+                        <th>Valor</th>
+                        <th>Fecha</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <div id="pagination"></div>    
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='scripts/interlocutor-detalle.js') }}"></script>
+</body>
+</html>

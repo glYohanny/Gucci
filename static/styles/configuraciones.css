@@ -1,0 +1,225 @@
+/* Layout General */
+body {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+}
+
+/* Menú Lateral */
+.menu {
+    width: 250px;
+    height: 100vh;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    position: fixed;
+}
+
+.menu h1 {
+    color: #333;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.menu table {
+    width: 100%;
+}
+
+.menu td {
+    padding: 10px 0;
+}
+
+.menu a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #666;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.menu a:hover {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.menu img {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+}
+
+/* Contenido Principal */
+.content {
+    margin-left: 250px;
+    padding: 20px;
+    width: calc(100% - 250px);
+}
+
+.header {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header h2 {
+    color: #333;
+    margin: 0;
+}
+
+/* Contenedor de Configuraciones */
+.settings-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Secciones de Configuración */
+.settings-section {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.settings-section h3 {
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+/* Items de Configuración */
+.setting-item {
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.setting-item:hover {
+    background-color: #f8f8f8;
+}
+
+.setting-item label {
+    display: block;
+    margin-bottom: 8px;
+    color: #666;
+    font-weight: bold;
+}
+
+/* Elementos de Formulario */
+input[type="text"],
+select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.backup-btn {
+    background-color: #2196F3;
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+}
+
+.backup-btn:hover {
+    background-color: #1976D2;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .menu {
+        width: 60px;
+        padding: 10px;
+    }
+
+    .menu h1 {
+        font-size: 0;
+        margin-bottom: 20px;
+    }
+
+    .menu a div,
+    .menu td a span {
+        display: none;
+    }
+
+    .content {
+        margin-left: 60px;
+        width: calc(100% - 60px);
+    }
+
+    .settings-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Estado Activo */
+.active {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.settings-section {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Estilo para mensajes de error */
+.error-message {
+    color: #d32f2f;
+    background-color: #ffebee;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+/* Estilo para mensajes de éxito */
+.success-message {
+    color: #388e3c;
+    background-color: #e8f5e9;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    font-size: 14px;
+}

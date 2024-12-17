@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio de Sesión</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styleLogin.css') }}">
+
+</head>
+<body>
+    <div class="logo">GUCcI</div>
+    <div class="container">
+       
+        <h1>Inicio de Sesión</h1>
+        <form onsubmit="login(); return false;">
+            <label for="usuario">Usuario</label>
+            <input type="text" id="usuario" name="usuario" required>
+            <label for="contrasena">Contraseña</label>
+            <input type="password" id="contrasena" name="contrasena" required>
+            <a href="#" class="recover" onclick="openPopup()">Recuperar Contraseña?</a>
+            <button type="submit">Iniciar</button>
+        </form>
+    </div>
+    <div id="popup" class="popup"> 
+        <div class="popup-content"> <span class="close" onclick="closePopup()">&times;</span>
+             <h2>Recuperar Contraseña</h2> 
+             <form> 
+                <label class="correo" for="email">Ingresa tu correo electrónico</label> 
+                <input type="email" id="email" name="email" required> 
+                <button type="submit">Enviar</button> 
+            </form> 
+        </div> 
+    </div>
+    <footer>
+        <p>Copyright©2023 | <a href="#">Privacy Policy</a></p>
+    </footer>
+
+   <script src="{{ url_for('static', filename='scripts/login.js') }}"></script>
+</body>
+</html>
